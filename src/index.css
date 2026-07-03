@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply bg-canvas-light text-zinc-900 dark:bg-canvas-dark dark:text-zinc-100 font-sans;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+  ::selection {
+    @apply bg-indigo-500/25;
+  }
+  *:focus-visible {
+    @apply outline-none ring-2 ring-indigo-500/60 ring-offset-2 ring-offset-canvas-light dark:ring-offset-canvas-dark rounded-md;
+  }
+  input[type="date"], input[type="time"] {
+    color-scheme: light;
+  }
+  .dark input[type="date"], .dark input[type="time"] {
+    color-scheme: dark;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-surface-light dark:bg-surface-dark rounded-2xl border border-zinc-200/80 dark:border-white/[0.07] shadow-[0_1px_2px_rgba(0,0,0,0.04)];
+  }
+  .input {
+    @apply w-full rounded-xl border border-zinc-300 dark:border-white/10 bg-white dark:bg-white/[0.04] px-3 py-2 text-sm placeholder-zinc-400 dark:placeholder-zinc-500 focus:border-indigo-500 transition-colors;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2 text-sm font-medium transition-all active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none;
+  }
+  .btn-primary {
+    @apply btn bg-zinc-900 text-white hover:bg-zinc-700 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200;
+  }
+  .btn-ghost {
+    @apply btn text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-white/[0.06];
+  }
+  .btn-danger {
+    @apply btn bg-rose-600 text-white hover:bg-rose-500;
+  }
+  .label {
+    @apply block text-xs font-medium text-zinc-500 dark:text-zinc-400 mb-1;
+  }
+  .scroll-thin::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  .scroll-thin::-webkit-scrollbar-thumb {
+    @apply bg-zinc-300 dark:bg-white/10 rounded-full;
+  }
+}
